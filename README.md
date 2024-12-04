@@ -32,10 +32,7 @@ This program automates the creation of a compatible mod loader, ensuring an easy
 ---
 
 ## How to make a mod to use this?
-1. Go to your game installation and locate the `GameLite` folder. (S.T.A.L.K.E.R. 2 Heart of Chornobyl\Stalker2\Content\GameLite)
-2. Create a folder and call it DLCGameData.
-3. Browse to that folder and create another folder, name it whatever you want, just make it original so that it doesn't conflict with other peoples mods.
-4. Get into that folder and place your .cfg files there.
+Follow this [guide.](https://docs.google.com/document/d/1dlH18CWkIuBjdzZJbeuH0pFcji3JNdv336uHq1KsDR0/edit?tab=t.0)
 
 If you want to see it in action, head over to my other repo [here.](https://github.com/herbatka/ZubrCaliberChange/tree/dev)
 
