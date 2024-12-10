@@ -106,7 +106,11 @@ void CreateDirectoryStructureAndIni(const std::string& baseDir, const std::vecto
 
     // Create folder structure
     std::string modLoaderPath = herbataPath + "\\HerbatasDLCModLoader\\Stalker2\\Plugins\\PlatformProviderController\\Config\\Steam";
+    std::string modLoaderPathGOG = herbataPath + "\\HerbatasDLCModLoader\\Stalker2\\Plugins\\PlatformProviderController\\Config\\GOG";
+    std::string modLoaderPathEpic = herbataPath + "\\HerbatasDLCModLoader\\Stalker2\\Plugins\\PlatformProviderController\\Config\\EGS";
     fs::create_directories(modLoaderPath);
+    fs::create_directories(modLoaderPathGOG);
+    fs::create_directories(modLoaderPathEpic);
 
     // Create SteamPlatformProviderEngine.ini
     std::ofstream iniFile(modLoaderPath + "\\SteamPlatformProviderEngine.ini");
@@ -184,6 +188,141 @@ Ultimate=1661621
     }
 
     iniFile.close();
+
+    // Create GOGPlatformProviderEngine.ini
+    std::ofstream iniFileGOG(modLoaderPathGOG + "\\GOGPlatformProviderEngine.ini");
+    iniFileGOG << R"([OnlineSubsystem]
+DefaultPlatformService=GOG
+
+[OnlineSubsystemGOG]
+bEnabled=true
+ClientID=56678921250274561
+ClientSecret=eec835b13ae4567392c02370bd5dfbbb474a7fe3132d5b8150fc883df8bd5da8
+bRequireBackendAuthorization=false
++Achievements=DoHeadshots
++Achievements=DoStealthKills
++Achievements=Sandwich
++Achievements=PerfectBarter
++Achievements=PurchaseUpgrade
++Achievements=HeadshotStreak
++Achievements=RoyalFlush
++Achievements=MutantHunter
++Achievements=BreakEquipment
++Achievements=Demoman
++Achievements=Gunsmith
++Achievements=ArtiHoarder
++Achievements=ArchiHoarder
++Achievements=BlueHoarder
++Achievements=Discovery
++Achievements=LonerShooter
++Achievements=UseDifferentWeapons
++Achievements=NoObstacleTooBig
++Achievements=DrunkMaster
++Achievements=CatchingUp
++Achievements=MerryGoRound
++Achievements=WipedOut
++Achievements=CanOpener
++Achievements=CouponsToBurn
++Achievements=Bouncy
++Achievements=ChimeraRun
++Achievements=SneakyClearLair
++Achievements=FinishSquad
++Achievements=Lockpick
++Achievements=HelloZone
++Achievements=GoodbyeLesserZone
++Achievements=MeetShram
++Achievements=MainPrize
++Achievements=CrystalLock
++Achievements=KillFaust
++Achievements=OSoznanie
++Achievements=DoctorMystery
++Achievements=MeetStrelok
++Achievements=MeetDegtyarev
++Achievements=EndingKorshunov
++Achievements=EndingShram
++Achievements=EndingStrelok
++Achievements=EndingKaymanov
++Achievements=SaveChernozem
++Achievements=TheSmartest
++Achievements=SaveSkadovsk
++Achievements=ShootApples
++Achievements=SaveZalesie
++Achievements=Povodok
++Achievements=VerySpecialWeapon
++Achievements=SitNearBonfire
++Achievements=KillStrelok
++Achievements=KillKorshunov
++Achievements=KillShram
++Achievements=AcceptFaustHelp
++Achievements=DeclineFaustHelp
++Achievements=BetweenTheLines
++Achievements=FindAllScanners
+
+[GOGDLCs]
+PreOrder=1536886246
+Deluxe=1891718289
+Ultimate=1109022028
+)"; // Add fixed content for achievements here
+
+    // Add dynamic folder lines
+    for (size_t x = 0; x < folderNames.size(); ++x) {
+        iniFileGOG << folderNames[x] << "=" << 56678921250274561 << "\n";
+    }
+
+    iniFileGOG.close();
+
+    // Create EGSPlatformProviderEngine.ini
+    std::ofstream iniFileEpic(modLoaderPathEpic + "\\EGSPlatformProviderEngine.ini");
+    iniFileEpic << R"([OnlineSubsystem]
+DefaultPlatformService=EOS
+
+[OnlineSubsystemEOS]
+bEnabled=true
+
+[/Script/OnlineSubsystemEOS.EOSSettings]
+CacheDir=CacheDir
+DefaultArtifactName=Stalker2Live
+TickBudgetInMilliseconds=0
+bEnableOverlay=True
+bEnableSocialOverlay=True
+bEnableEditorOverlay=True
+bShouldEnforceBeingLaunchedByEGS=False
+TitleStorageReadChunkLength=0
++Artifacts=(ArtifactName="Stalker2Live",ClientId="xyza7891Os1dzhb5gxuO9g7Y65Njy0I9",ClientSecret="2x/ovfSOVVnVIxIIUTFn9gH2nqDIgku5y5jhg1NxHRQ",ProductId="b96b390642dd4ae79c0378ec4fd52a3d",SandboxId="602a0ef0aceb46cca62445439661d712",DeploymentId="04bc20720282478899e40b126fc0c4c4",EncryptionKey="1234567890123456789012345678901234567890123456789012345678901234")
++Artifacts=(ArtifactName="fc2498779fc6461bbbc0eb25ef46d0ac",ClientId="xyza7891Os1dzhb5gxuO9g7Y65Njy0I9",ClientSecret="2x/ovfSOVVnVIxIIUTFn9gH2nqDIgku5y5jhg1NxHRQ",ProductId="b96b390642dd4ae79c0378ec4fd52a3d",SandboxId="p-n8hbcw6yadnpkhug6lk24s6gy7b8c9",DeploymentId="4185dc94702d43aab88a8fdb0c471358",EncryptionKey="1234567890123456789012345678901234567890123456789012345678901234")
++Artifacts=(ArtifactName="84921bc96ad64f7d81a2a1a9d550ee05",ClientId="xyza7891Os1dzhb5gxuO9g7Y65Njy0I9",ClientSecret="2x/ovfSOVVnVIxIIUTFn9gH2nqDIgku5y5jhg1NxHRQ",ProductId="b96b390642dd4ae79c0378ec4fd52a3d",SandboxId="p-n8hbcw6yadnpkhug6lk24s6gy7b8c9",DeploymentId="4185dc94702d43aab88a8fdb0c471358",EncryptionKey="1234567890123456789012345678901234567890123456789012345678901234")
++Artifacts=(ArtifactName="Stalker2Dev",ClientId="xyza7891Os1dzhb5gxuO9g7Y65Njy0I9",ClientSecret="2x/ovfSOVVnVIxIIUTFn9gH2nqDIgku5y5jhg1NxHRQ",ProductId="b96b390642dd4ae79c0378ec4fd52a3d",SandboxId="p-n8hbcw6yadnpkhug6lk24s6gy7b8c9",DeploymentId="4185dc94702d43aab88a8fdb0c471358",EncryptionKey="1234567890123456789012345678901234567890123456789012345678901234")
++Artifacts=(ArtifactName="e7dd7df6a0f8421baa650c44e42ae722",ClientId="xyza7891Os1dzhb5gxuO9g7Y65Njy0I9",ClientSecret="2x/ovfSOVVnVIxIIUTFn9gH2nqDIgku5y5jhg1NxHRQ",ProductId="b96b390642dd4ae79c0378ec4fd52a3d",SandboxId="p-qbsgba95nkf56l8wdg8qsqtfrcpfh5",DeploymentId="a262dea3aabc44cfaa5cc7a2b38147a1",EncryptionKey="1234567890123456789012345678901234567890123456789012345678901234")
++Artifacts=(ArtifactName="Stalker2Stage",ClientId="xyza7891Os1dzhb5gxuO9g7Y65Njy0I9",ClientSecret="2x/ovfSOVVnVIxIIUTFn9gH2nqDIgku5y5jhg1NxHRQ",ProductId="b96b390642dd4ae79c0378ec4fd52a3d",SandboxId="p-qbsgba95nkf56l8wdg8qsqtfrcpfh5",DeploymentId="a262dea3aabc44cfaa5cc7a2b38147a1",EncryptionKey="1234567890123456789012345678901234567890123456789012345678901234")
+bUseEAS=True
+bUseEOSConnect=False
+bMirrorStatsToEOS=False
+bMirrorAchievementsToEOS=False
+bUseEOSSessions=False
+bMirrorPresenceToEAS=False
+
+[PreOrder_EOSDLCs]
+PreOrder=aaff224c9d47468b8a747573703748a6
+Ultimate=0fcd6577bf5848d8983526a4e8d584e5
+Deluxe=9aded54a65ba4552b1a21306c5f6faad
+)"; // Add fixed content for achievements here
+
+    // Add dynamic folder lines
+    for (size_t z = 0; z < folderNames.size(); ++z) {
+        iniFileEpic << folderNames[z] << "=" << "xyza7891Os1dzhb5gxuO9g7Y65Njy0I9" << "\n";
+    }
+
+    iniFileEpic.close();
+    std::ofstream iniFileEpic2(modLoaderPathEpic + "\\EGSPlatformProviderEngine.ini", std::ios::app);
+    iniFileEpic2 << R"(
+[Launch_EOSDLCs]
+Ultimate=4f73634217a54f8d9ecdff2b5ffe9144
+Deluxe=dbb6d9098e634e0da58ef2e6700f2bbd
+)";
+    for (size_t y = 0; y < folderNames.size(); ++y) {
+        iniFileEpic2 << folderNames[y] << "=" << "xyza7891Os1dzhb5gxuO9g7Y65Njy0I9" << "\n";
+    }
+    iniFileEpic2.close();
 }
 
 void RunRepakAndCopyPak(const std::string& selectedDir) {
