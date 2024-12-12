@@ -266,7 +266,7 @@ Ultimate=1109022028
 
     // Add dynamic folder lines
     for (size_t x = 0; x < folderNames.size(); ++x) {
-        iniFileGOG << folderNames[x] << "=" << 56678921250274561 << "\n";
+        iniFileGOG << folderNames[x] << "=" << 1529799785 << "\n";
     }
 
     iniFileGOG.close();
@@ -309,7 +309,7 @@ Deluxe=9aded54a65ba4552b1a21306c5f6faad
 
     // Add dynamic folder lines
     for (size_t z = 0; z < folderNames.size(); ++z) {
-        iniFileEpic << folderNames[z] << "=" << "xyza7891Os1dzhb5gxuO9g7Y65Njy0I9" << "\n";
+        iniFileEpic << folderNames[z] << "=" << "3854f76514eb4aadb8d1426563c7b279" << "\n";
     }
 
     iniFileEpic.close();
@@ -320,7 +320,7 @@ Ultimate=4f73634217a54f8d9ecdff2b5ffe9144
 Deluxe=dbb6d9098e634e0da58ef2e6700f2bbd
 )";
     for (size_t y = 0; y < folderNames.size(); ++y) {
-        iniFileEpic2 << folderNames[y] << "=" << "xyza7891Os1dzhb5gxuO9g7Y65Njy0I9" << "\n";
+        iniFileEpic2 << folderNames[y] << "=" << "3854f76514eb4aadb8d1426563c7b279" << "\n";
     }
     iniFileEpic2.close();
 }
