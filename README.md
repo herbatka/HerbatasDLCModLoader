@@ -41,7 +41,7 @@ If you want to see it in action, head over to my other repo [here.](https://gith
 ## Technical Details
 - The application:
   - Reads and saves the installation directory to a `config.ini` file.
-  - Utilizes the Windows `SHBrowseForFolder` API for directory selection.
+  - Utilizes the Windows `IFileOpenDialog` API for directory selection.
   - Automatically manages existing mod files to avoid conflicts.
   - Creates the needed configuration file to configure loading the mods as DLC.
 
