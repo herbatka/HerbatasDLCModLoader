@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <shlobj.h>
+#include <shobjidl.h> // For IFileOpenDialog
 #include <string>
 #include <vector>
 #include <filesystem>
@@ -42,21 +43,45 @@ bool LoadDirectoryFromIni(std::string& directory) {
     return false;
 }
 
-// Helper function to open folder selection dialog
+// Helper function to open folder selection dialog using IFileOpenDialog
 std::string BrowseForFolder(HWND hwnd) {
-    BROWSEINFO bi = {0};
-    bi.lpszTitle = "Select Stalker 2 Installation Directory";
-    bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_NEWDIALOGSTYLE;
-    LPITEMIDLIST pidl = SHBrowseForFolder(&bi);
+    HRESULT hr;
+    IFileOpenDialog* pFileOpen = nullptr;
 
-    if (pidl != nullptr) {
-        char path[MAX_PATH];
-        if (SHGetPathFromIDList(pidl, path)) {
-            CoTaskMemFree(pidl);
-            return std::string(path);
+    // Create the FileOpenDialog object
+    hr = CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_ALL, IID_IFileOpenDialog, reinterpret_cast<void**>(&pFileOpen));
+    if (SUCCEEDED(hr)) {
+        // Set the options for folder selection
+        DWORD dwOptions;
+        hr = pFileOpen->GetOptions(&dwOptions);
+        if (SUCCEEDED(hr)) {
+            pFileOpen->SetOptions(dwOptions | FOS_PICKFOLDERS);
         }
-        CoTaskMemFree(pidl);
+
+        // Show the dialog
+        hr = pFileOpen->Show(hwnd);
+        if (SUCCEEDED(hr)) {
+            // Retrieve the selected item
+            IShellItem* pItem;
+            hr = pFileOpen->GetResult(&pItem);
+            if (SUCCEEDED(hr)) {
+                PWSTR pszFilePath = nullptr;
+                hr = pItem->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
+                if (SUCCEEDED(hr)) {
+                    // Convert the file path to a standard string
+                    std::wstring wstrFilePath(pszFilePath);
+                    std::string strFilePath(wstrFilePath.begin(), wstrFilePath.end());
+                    CoTaskMemFree(pszFilePath);
+                    pItem->Release();
+                    pFileOpen->Release();
+                    return strFilePath;
+                }
+                pItem->Release();
+            }
+        }
+        pFileOpen->Release();
     }
+
     return "";
 }
 
@@ -347,6 +372,7 @@ void RunRepakAndCopyPak(const std::string& selectedDir) {
 
 // Main entry point
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+    CoInitialize(NULL); // Initialize COM library
     const char CLASS_NAME[] = "Stalker2ModLoader";
 
     WNDCLASS wc = { };
@@ -365,6 +391,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     );
 
     if (hwnd == NULL) {
+        CoUninitialize(); // Uninitialize COM library
         return 0;
     }
 
@@ -376,6 +403,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         DispatchMessage(&msg);
     }
 
+    CoUninitialize(); // Uninitialize COM library
     return 0;
 }
 
