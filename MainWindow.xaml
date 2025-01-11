@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Herbata's Mod as DLC Loader" Height="180" Width="430">
+        Title="Herbata's Mod as DLC Loader - GOG Version" Height="180" Width="430">
     <Window.Resources>
         <Style TargetType="Button" x:Key="BorderlessButtonStyle">
             <Setter Property="Background" Value="Transparent" />

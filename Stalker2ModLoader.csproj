@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>resources/appicon.ico</ApplicationIcon>
-	<AssemblyTitle>Herbata's DLC Mod Loader</AssemblyTitle>
+	<AssemblyTitle>Herbata's DLC Mod Loader - GOG Version</AssemblyTitle>
   </PropertyGroup>
 
 </Project>
