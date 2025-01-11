@@ -50,7 +50,6 @@ To build a self-contained application:
    ```
 2. Open the project in **Visual Studio**.
 3. Build the solution in **Release** mode.
-4. Copy the `appicon.ico` and `repak.exe` files to the `bin/Release` folder.
 
 ## Troubleshooting
 
