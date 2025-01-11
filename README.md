@@ -5,7 +5,7 @@ A WPF-based tool to load mods as DLCs for **Stalker 2**. This tool simplifies th
 ## Features
 
 - Generates the required folder structure for Stalker 2 mods.
-- Creates and configures the `SteamPlatformProviderEngine.ini` file.
+- Creates and configures the `GOGPlatformProviderEngine.ini` file.
 - Runs `repak.exe` to package mods as `.pak` files.
 - Automatically copies the generated `.pak` file to the Stalker 2 `~mods` folder.
 - User-friendly GUI for folder selection and mod loading.
@@ -33,8 +33,8 @@ The tool generates the following folder structure in the system's temp directory
       Plugins/
         PlatformProviderController/
           Config/
-            Steam/
-              SteamPlatformProviderEngine.ini
+            GOG/
+              GOGPlatformProviderEngine.ini
  ```
 ## Configuration
 
