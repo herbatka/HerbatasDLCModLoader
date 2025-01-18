@@ -166,7 +166,7 @@ namespace WpfApp
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = exeDestinationPath,
-                        Arguments = "pack --version V11 " + repakFolderPath,
+                        Arguments = "pack --version V11 \"" + repakFolderPath + "\"",
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         RedirectStandardError = true,
