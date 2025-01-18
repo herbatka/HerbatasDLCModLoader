@@ -55,8 +55,8 @@ namespace WpfApp
                     return;
                 }
 
-                string tempFolderPath = Path.Combine(Path.GetTempPath(), "HerbatasDLCModLoader");
-                string repakFolderPath = Path.Combine(Path.GetTempPath(), "HerbatasDLCModLoader", "HerbatasDLCModLoader");
+                string tempFolderPath = Path.Combine(Path.GetFullPath(Path.GetTempPath()), "HerbatasDLCModLoader");
+                string repakFolderPath = Path.Combine(Path.GetFullPath(Path.GetTempPath()), "HerbatasDLCModLoader", "HerbatasDLCModLoader");
                 string modsFolderPath = Path.Combine(folderPath, "Stalker2", "Content", "Paks", "~mods");
                 string configFolderPath = Path.Combine(tempFolderPath, "HerbatasDLCModLoader", "Stalker2", "Plugins", "PlatformProviderController", "Config", "Steam");
                 if (!Directory.Exists(configFolderPath))
@@ -159,7 +159,7 @@ namespace WpfApp
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = exeDestinationPath,
-                        Arguments = "pack --version V11 " + repakFolderPath,
+                        Arguments = "pack --version V11 \"" + repakFolderPath + "\"",
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         RedirectStandardError = true,

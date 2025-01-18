@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Docker\\Documents\\GitHub\\DLC2\\Stalker2ModLoader\\Stalker2ModLoader.csproj",
+      "projectUniqueName": "C:\\Users\\Docker\\Documents\\GitHub\\HerbatasDLCModLoader\\Stalker2ModLoader.csproj",
       "projectName": "Stalker2ModLoader",
-      "projectPath": "C:\\Users\\Docker\\Documents\\GitHub\\DLC2\\Stalker2ModLoader\\Stalker2ModLoader.csproj",
+      "projectPath": "C:\\Users\\Docker\\Documents\\GitHub\\HerbatasDLCModLoader\\Stalker2ModLoader.csproj",
       "packagesPath": "C:\\Users\\Docker\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Docker\\Documents\\GitHub\\DLC2\\Stalker2ModLoader\\obj\\",
+      "outputPath": "C:\\Users\\Docker\\Documents\\GitHub\\HerbatasDLCModLoader\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
